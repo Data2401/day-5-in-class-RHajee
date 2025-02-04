@@ -1,0 +1,185 @@
+---
+title: "Intro to Functions"
+author: "Rehana Hajee"
+date: "DATA 2401"
+output: 
+        slidy_presentation: 
+                theme: cosmo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Learning Objectives 
+
+* Learn how to use built-in functions in R
+* Understand how those functions accept *arguments* and how arguments work in R
+   + Positional arguments
+   + Named arguments
+* How to understand the documentation provided for functions, which helps you learn new ones when you need them! 
+
+# Functions! 
+
+As you learn more, your projects are going to get more complicated. In fact, they're going to get complicated pretty quickly. Tasks you ask the computer to do will involve multiple lines, and you'll often need to ask them to do that thing more than once. 
+
+What if you have two groups of data and you want to do the same thing to them? 
+
+> Next class, you'll learn how to write your own functions. 
+
+# What's a function? 
+
+A **function** is a named sequence of instructions that you want to perform one or more times in a program. They bundle up multiple steps into one unit that you can "call" just once instead. 
+
+> In the simplest sense, a function is code that does a step (or steps) for you
+
+In R, functions tend to follow the mathmatical definition of a "function" -- you give them inputs, and they give you back outputs. 
+
+Some lingo: The inputs are often called **arguments**, or **parameters**, and you are said to "pass" an argument to a function when you **call** it.  The function **returns** the output. If I have a function that finds the average of a set of numbers, I pass the set of numbers as an argument, and the function returns the average. 
+
+You'll see functions pretty much constantly. The functions available in R are part of what makes it so powerful for data science. 
+
+# Function Syntax
+
+You call a function by typing the name of it, followed by the arguments inside parenthesis.
+
+**Quick Exercise:** In your R console:
+
+- Call the `print()` function, passing it `Hello World`
+- Call the `sqrt()` function, passing it 25 as an argument
+- Create a numeric vector, `numbers <- c(4, -8, 15, 16, -23, 42)`
+- Use these functions on it:
+  * `sum()`
+  * `sqrt()`
+  * `abs()`
+- Call the `max()` function, passing it the `numbers` object. 
+- Call the `getwd()` function, passing it nothing.
+
+All of these exercises printed their results to the console. The output is then no longer available to the computer to "see". If you want to be able to use the value that's returned by a function, you need to store it as a variable! You do this with an assignment arrow, just like when we assigned numbers and strings.
+
+```{r eval = F}
+# store the max of these values in a variable `my_max`
+my_max <- max(1, 2, 24, 3, 4)
+
+# you can compare with these too
+my_max > 10
+
+# and even store that as it's own variable
+is_max_bigger_than_ten <- my_max > 10
+        # returns TRUE. 
+        # This is a little long of a variable name....
+
+# you can combine functions
+phi <- .5 + sqrt(5) / 2 
+
+# you can nest them together
+print(min(sqrt(2), 1)) 
+        # careful with parentheses, tho! 
+```
+
+# Built-in R functions
+
+The functions I've been using are just ready and available for use in the R language. There are a LOT of functions available, and a big part of learning R is learning what's there to use!
+
+A Very Short List of Examples: 
+
+```{r}
+# finds the min of the inputs
+min(1, 2, 3, 4) 
+
+# returns a sequence of numbers from a to b
+seq(3, 17) 
+
+# returns a combined vector (next chapter!) of the inputs
+c(1, 3, 5, 7, 3, 4)
+
+# rounds the first argument to the given number of digits
+round(pi, 5) 
+
+# returns the sum of the input values (here, numbers from 100 to 200)
+sum(seq(100, 200)) 
+# or
+x <- seq(100,200)
+sum(x)
+# notice these are still just print to the console. For practice, save it to a variable, something like sum_x
+```
+
+
+**Quick Exercise**:
+
+Open RStudio and try out these three tasks. You may need to use the Help panel.
+
+ - How compute the median of a group of numbers
+ - How to find the length of a vector of numbers
+ - How to sample from a vector of numbers
+ - How to `paste` strings together (and how to change what goes between them!)
+ 
+```{r}
+
+
+```
+ 
+# Arguments
+
+As you may have seen in the exercise we just did, some function have lots more arguments than we have been using. Most have both *required arguments*, which are necessary for the function to run/work, and *optional arguments*, which have *default* values if you don't give them one.
+
+To use these optional arguments, you *name* them when you pass them as input. 
+
+```{r}
+seq(3, 15, by = 3) # the sequence is now by 3 instead of by 1, which is the default
+
+# if we wanted to use all the argument names:
+seq(from = 3, to = 15, by = 3) 
+        # why didn't we need the from and to above?
+        # Positional Arguments! 
+```
+
+---
+
+R uses **positional arguments** which means that you can pass arguments in a certain order and R will know what you want to use for what. 
+
+> You can also move the argument order around, but *only if you name them*
+
+```{r eval = F}
+# These all do the same thing
+round(pi, 3)
+round(pi, digits = 3)
+round(digits = 3, pi)
+```
+
+# Documentation 
+
+I hope you're asking yourself: How do you know what arguments to use??? The documentation! Use `? Function_name` and look in the "Usage" section. 
+
+Let's parse out the usage for `paste()`, a function that concatenates (sticks together) strings: 
+
+```
+paste(..., sep = " ", collapse = NULL)
+```
+
+The `...` says it takes any number of arguments (the stuff you're pasting together), and two named arguments: the named argument `sep` (separator) has a default values of a space, so if you don't put anything, the strings will be separated by a space, and collapse, which is used when you paste vectors together, that defaults to `NULL`, which is R for the null object. 
+
+
+# Loading functions
+
+R has lots of built in functions, but the community of developers has written and published SO many more. Because R is open source, many solutions written by other people are available to you.
+
+> Chances are, when you come across a task, someone else has too, and they wrote a package to handle it! 
+
+You need to download and install packages once per machine, using `install.packages()`. For every R session, you need to load the package using 'library()`
+
+**Today's Activity** - Code available in Github Repo, link in Canvas. Part 1 should be a bit of a refresh from last week, part 2 is new from today! 
+
+**Homework for the Week** - Link to classroom repo available in Canvas, it's a quick practice/check on what you've learned the last two classes. 
+
+
+
+
+
+
+
+
+
+
+
+
