@@ -55,6 +55,9 @@ You call a function by typing the name of it, followed by the arguments inside p
 - Call the `max()` function, passing it the `numbers` object. 
 - Call the `getwd()` function, passing it nothing.
 
+
+
+
 All of these exercises printed their results to the console. The output is then no longer available to the computer to "see". If you want to be able to use the value that's returned by a function, you need to store it as a variable! You do this with an assignment arrow, just like when we assigned numbers and strings.
 
 ```{r eval = F}
@@ -115,8 +118,12 @@ Open RStudio and try out these three tasks. You may need to use the Help panel.
  - How to `paste` strings together (and how to change what goes between them!)
  
 ```{r}
-
-
+numbers <- c(4, -8, 15, 16, -23, 42)
+median(numbers)
+length (numbers)
+sample (numbers)
+paste("orange", "apple", "banana", sep = "")
+paste("orange", "apple", "banana", sep = ", ")
 ```
  
 # Arguments
